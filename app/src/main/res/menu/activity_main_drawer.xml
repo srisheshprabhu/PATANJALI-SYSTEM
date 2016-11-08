@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_intro"
+            android:title="@string/introduction" />
+        <item
+            android:id="@+id/nav_chap1"
+            android:title="@string/chap1" />
+        <item
+            android:id="@+id/nav_chap2"
+            android:title="@string/chap2" />
+        <item
+            android:id="@+id/nav_chap3"
+            android:title="@string/chap3" />
+        <item
+            android:id="@+id/nav_chap4"
+            android:title="@string/chap4" />
+    </group>
+
+</menu>
