@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/intro_con"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intro_con"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,43 +10,95 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="yogasutra.android.com.patanjali.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/yogasutra"
-        android:id="@+id/head_intro"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:foregroundGravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    tools:context="yogasutra.android.com.patanjali.MainActivity">
 
     <ImageView
+        android:id="@+id/img_intro"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:contentDescription="@string/side_img"
-        android:src="@drawable/yogi"
-        android:layout_below="@id/head_intro"
+        android:layout_height="@dimen/img_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@id/head_intro"
         android:layout_marginTop="30dp"
-        android:id="@+id/img_intro" />
+        android:contentDescription="@string/side_img"
+        android:src="@drawable/yogi" />
+
+    <MediaController
+        android:id="@+id/media_control"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/img_intro">
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|start"
+            android:gravity="left|start"
+            android:src="@drawable/exo_controls_play"
+            android:textAlignment="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+
+
+        <ImageButton
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|end"
+            android:gravity="end"
+            android:src="@drawable/exo_controls_pause"
+            android:textAlignment="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:nestedScrollingEnabled="true"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"/>
+
+
+    </MediaController>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/media_control">
+
+        <TextView
+            android:id="@+id/shloka_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal" />
+
+    </ScrollView>
+
     <TextView
+        android:id="@+id/head_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/intro_para"
-        android:text="@string/intro_para"
-        android:layout_below="@id/img_intro"
-        android:layout_marginTop="20dp"/>
-    <MediaController
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/intro_para"
-        android:layout_marginTop="20dp">
-    </MediaController>
+        android:foregroundGravity="center_horizontal"
+        android:text="@string/yogasutra"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolbar"/>
+
 
 </RelativeLayout>

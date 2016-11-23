@@ -21,4 +21,6 @@
     <string name="intro_para">The Yoga Sūtras of Patañjali are 196 Indian sutras (aphorisms). The Yoga Sutras were compiled around 400 CE by Sage Patanjali, taking materials about yoga from older traditions. Together with his commentary they form thePātañjalayogaśāstra.</string>
     <string name="shlokas">shlokas</string>
     <string name="title_activity_introduction">introduction</string>
+    <string name="title_activity_chapter1">Chapter1</string>
+    <string name="title_activity_chapter2">Chapter2</string>
 </resources>

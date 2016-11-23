@@ -1,9 +1,12 @@
 package yogasutra.android.com.patanjali;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,30 +18,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-public class introduction extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Button ply, pse, stop, frwd, rwd;
+public class Introduction extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     MediaPlayer mediaPlayer;
-    int cur_pos = 0, total = 0;
     private SeekBar seekBar = null;
     private Handler mHandler;
-    int CurrentPosition;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro_main);
-        Button ply = (Button) findViewById(R.id.play);
-        Button pse = (Button) findViewById(R.id.pause);
-        Button stop = (Button) findViewById(R.id.stop);
-        Button rwd = (Button) findViewById(R.id.rewind);
-        Button frwd = (Button) findViewById(R.id.forward);
-        //mediaPlayer = MediaPlayer.create(introduction.this, R.raw.samaadhi_paada);
-        mediaPlayer = MediaPlayer.create(introduction.this, R.raw.samaadhi_paada);
+        int total = 0;
+
+        ImageButton ply = (ImageButton) findViewById(R.id.play);
+        ImageButton pse = (ImageButton) findViewById(R.id.pause);
+        //mediaPlayer = MediaPlayer.create(Introduction.this, R.raw.samaadhi_paada);
+        mediaPlayer = MediaPlayer.create(Introduction.this, R.raw.introduction);
 
         seekBar = (SeekBar) findViewById(R.id.seek);
         total = mediaPlayer.getDuration();
@@ -61,6 +67,7 @@ public class introduction extends AppCompatActivity implements NavigationView.On
                // seekBar.setMax(mediaPlayer.getDuration()); */
                 mediaPlayer.start();
                 runOnUiThread(run);
+              //  runOnUiThread(ReadRun);
 
             }
         });
@@ -74,18 +81,22 @@ public class introduction extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        stop.setOnClickListener(new View.OnClickListener() {
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
-                    mediaPlayer.seekTo(0);
-
-                }
-
-
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setType("plain/text");
+                sendIntent.setData(Uri.parse("test@gmail.com"));
+                sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
+                startActivity(sendIntent);
             }
         });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,6 +116,8 @@ public class introduction extends AppCompatActivity implements NavigationView.On
 
         @Override
         public void run() {
+            int CurrentPosition;
+
             if (mediaPlayer.isPlaying() && mediaPlayer!=null) {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
@@ -140,6 +153,8 @@ public class introduction extends AppCompatActivity implements NavigationView.On
 
     };
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
@@ -161,6 +176,7 @@ public class introduction extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        mediaPlayer.stop();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);

@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ys_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -21,8 +21,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".introduction"
-            android:label="@string/title_activity_introduction"
+            android:name=".Introduction"
+            android:label="@string/introduction"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yogasutra.android.com.patanjali.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Chapter1"
+            android:label="@string/chap1"
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="yogasutra.android.com.patanjali.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Chapter2"
+            android:label="@string/chap2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yogasutra.android.com.patanjali.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Chapter3"
+            android:label="@string/chap3"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yogasutra.android.com.patanjali.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Chapter4"
+            android:label="@string/chap4"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

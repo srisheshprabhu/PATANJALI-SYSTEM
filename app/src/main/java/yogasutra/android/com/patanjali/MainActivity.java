@@ -1,10 +1,10 @@
 package yogasutra.android.com.patanjali;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,44 +16,85 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Toast;
+import android.widget.ImageButton;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button b2;
-    Button b3;
-    Button b4;
-    Button ply;
-    Button pse;
-    SeekBar sbar;
+
+   public int backpress=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button b1 = (Button) findViewById(R.id.bt_intro);
+        Button b2 = (Button) findViewById(R.id.bt_chap1);
+        Button b3 = (Button) findViewById(R.id.bt_chap2);
+        Button b4 = (Button) findViewById(R.id.bt_chap3);
+        Button b5 = (Button) findViewById(R.id.bt_chap4);
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,introduction.class);
+                Intent intent = new Intent(MainActivity.this,Introduction.class);
                 startActivity(intent);
             }
         });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Chapter1.class);
+                startActivity(intent);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Chapter2.class);
+                startActivity(intent);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Chapter3.class);
+                startActivity(intent);
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Chapter4.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    /*
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setType("plain/text");
+                sendIntent.setData(Uri.parse("test@gmail.com"));
+                sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
+                startActivity(sendIntent);
             }
-        }); */
-        
-      
+        });
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -101,12 +142,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
-        }
+            Toast toast = Toast.makeText(this,"press back again to exit",Toast.LENGTH_SHORT);
+            toast.show();
+            backpress++;
+            if(backpress>1) super.finish();
+
+             }
+
     }
 
     @Override
@@ -139,18 +189,30 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_intro) {
-            setContentView(R.layout.intro_main);
-        }/* else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(MainActivity.this,Introduction.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_chap1) {
+            Intent intent = new Intent(MainActivity.this,Chapter1.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        }
+        else if (id == R.id.nav_chap2) {
+            Intent intent = new Intent(MainActivity.this,Chapter1.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_chap3) {
+            Intent intent = new Intent(MainActivity.this,Chapter1.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_send) {
+        }
+        else if (id == R.id.nav_chap4) {
+            Intent intent = new Intent(MainActivity.this,Chapter1.class);
+            startActivity(intent);
 
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

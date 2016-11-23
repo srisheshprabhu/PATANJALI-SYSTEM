@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:gravity="bottom"
@@ -11,13 +12,6 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/yogi"
-        android:contentDescription="@string/side_img" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,4 +19,11 @@
         android:layout_weight="1.58"
         android:background="#936060" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ys_logo"
+        android:contentDescription="@string/side_img" />
+
+</android.support.design.widget.CoordinatorLayout>
