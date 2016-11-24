@@ -1,6 +1,7 @@
 package yogasutra.android.com.patanjali;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -38,6 +41,10 @@ public class Chapter1 extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chap1_main);
+
+        Toast toast = Toast.makeText(this,"SAMAADHI PAADA",Toast.LENGTH_SHORT);
+        toast.show();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,15 +68,11 @@ public class Chapter1 extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
 
                 if (mediaPlayer != null && mediaPlayer.isPlaying()) return;
-            /*    if (seekBar.getProgress() > 0) {
-                    mediaPlayer.start();
-                    return;
-                }
-               // mediaPlayer.start();
-               seekBar.setProgress(0);
-               // seekBar.setMax(mediaPlayer.getDuration()); */
                 mediaPlayer.start();
                 runOnUiThread(run);
+                Toast toast = Toast.makeText(Chapter1.this,"Playing",Toast.LENGTH_SHORT);
+                toast.show();
+
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -101,23 +104,33 @@ public class Chapter1 extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
                 if (mediaPlayer.isPlaying())
                     mediaPlayer.pause();
+                Toast toast = Toast.makeText(Chapter1.this,"Paused",Toast.LENGTH_SHORT);
+                toast.show();
+
             }
         });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setType("plain/text");
-                sendIntent.setData(Uri.parse("test@gmail.com"));
-                sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
-                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
-                startActivity(sendIntent);
-            }
-        });
+        try {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                    sendIntent.setType("plain/text");
+                    sendIntent.setData(Uri.parse("test@gmail.com"));
+                    sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+                    sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"test@gmail.com"});
+                    sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
+                    startActivity(sendIntent);
+                }
+            });
+        } catch (Resources.NotFoundException e) {
+            Log.d("MAIL","prob with mail at chapter1");
+            Toast.makeText(this,"couldnt open mail",Toast.LENGTH_SHORT);
+            toast.show();
+
+        }
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -156,6 +169,11 @@ public class Chapter1 extends AppCompatActivity implements NavigationView.OnNavi
 
 
     };
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
 
 
     @Override
@@ -201,10 +219,85 @@ public class Chapter1 extends AppCompatActivity implements NavigationView.OnNavi
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        mediaPlayer.pause();
+        int id = item.getItemId();
+        if (id == R.id.nav_intro) {
+            Toast toast = Toast.makeText(Chapter1.this,"opening INTRODUCTION",Toast.LENGTH_SHORT);
+            toast.show();
+
+            Intent intent = new Intent(Chapter1.this,Introduction.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.nav_chap1) {
+            Toast toast = Toast.makeText(Chapter1.this,"opening SAMAADHI PAADA",Toast.LENGTH_SHORT);
+            toast.show();
+
+            Intent intent = new Intent(Chapter1.this,Chapter1.class);
+            startActivity(intent);
+
+
+        }
+        else if (id == R.id.nav_chap2) {
+            Toast toast = Toast.makeText(Chapter1.this,"Opening SAADHANA PAADA",Toast.LENGTH_SHORT);
+            toast.show();
+
+            Intent intent = new Intent(Chapter1.this,Chapter1.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.nav_chap3) {
+            Toast toast = Toast.makeText(Chapter1.this,"Opening VIBHUTI PAADA",Toast.LENGTH_SHORT);
+            toast.show();
+
+            Intent intent = new Intent(Chapter1.this,Chapter1.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.nav_chap4) {
+            Toast toast = Toast.makeText(Chapter1.this,"KAIVALYA PAADA",Toast.LENGTH_SHORT);
+            toast.show();
+
+            Intent intent = new Intent(Chapter1.this,Chapter1.class);
+            startActivity(intent);
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+
+
+    }
+
 }
+
 
 
 

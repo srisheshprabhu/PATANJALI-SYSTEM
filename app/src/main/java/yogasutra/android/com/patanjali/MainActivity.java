@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toast toast = Toast.makeText(this,"Welcome to Yogasutra",Toast.LENGTH_SHORT);
+        toast.show();
+
         Button b1 = (Button) findViewById(R.id.bt_intro);
         Button b2 = (Button) findViewById(R.id.bt_chap1);
         Button b3 = (Button) findViewById(R.id.bt_chap2);
@@ -159,6 +162,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -182,6 +186,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -189,26 +195,39 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_intro) {
+            Toast toast = Toast.makeText(this,"Opening Introduction",Toast.LENGTH_SHORT);
+            toast.show();
             Intent intent = new Intent(MainActivity.this,Introduction.class);
             startActivity(intent);
         }
         else if (id == R.id.nav_chap1) {
+
+            Toast toast = Toast.makeText(this,"Opening Chapter1(SAMAADHI PAADA)",Toast.LENGTH_SHORT);
+            toast.show();
             Intent intent = new Intent(MainActivity.this,Chapter1.class);
             startActivity(intent);
 
-
         }
         else if (id == R.id.nav_chap2) {
+
+            Toast toast = Toast.makeText(this,"Opening Chapter2(SADHANA PAADA)",Toast.LENGTH_SHORT);
+            toast.show();
             Intent intent = new Intent(MainActivity.this,Chapter1.class);
             startActivity(intent);
 
         }
         else if (id == R.id.nav_chap3) {
+
+            Toast toast = Toast.makeText(this,"Opening Chapter3(VIBHUTI PAADA)",Toast.LENGTH_SHORT);
+            toast.show();
             Intent intent = new Intent(MainActivity.this,Chapter1.class);
             startActivity(intent);
 
         }
         else if (id == R.id.nav_chap4) {
+
+            Toast toast = Toast.makeText(this,"Opening Chapter4(KAIVALYA PAADA)",Toast.LENGTH_SHORT);
+            toast.show();
             Intent intent = new Intent(MainActivity.this,Chapter1.class);
             startActivity(intent);
 
@@ -218,7 +237,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
-
     }
+
 
 }

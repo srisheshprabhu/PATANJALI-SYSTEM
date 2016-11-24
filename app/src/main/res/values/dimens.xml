@@ -6,6 +6,6 @@
     <dimen name="activity_horizontal_margin">40dp</dimen>
     <dimen name="activity_vertical_margin">50dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="nav_right_margin">150dp</dimen>
+    <dimen name="nav_right_margin">120dp</dimen>
     <dimen name="img_height">100dp</dimen>
 </resources>

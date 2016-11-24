@@ -45,7 +45,8 @@
         android:layout_alignRight="@+id/img_intro"
         android:layout_alignEnd="@+id/img_intro"
         android:id="@+id/bt_intro"
-        android:text="@string/introduction" />
+        android:text="@string/introduction"
+        style="@style/Widget.AppCompat.Button" />
 
     <Button
         android:layout_width="40dp"
